@@ -4,11 +4,14 @@
     export let points: {quantity: number, date: Date}[] = []
     export let title: string = 'Назначить встречу'
 
+    // проперти со знанием по умолчанию
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
+    // проперти, в идеале поддерживать старт недели в вс по параметру
     const daysInWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-
+    // export const colorsSet = string[] = [default]
+    // $: points = ... перебераешь юзеров каждому новому следующий цвет и все ок
     const date: {year: number, month: number} = {year: new Date().getFullYear(), month: new Date().getMonth()}
     let days: number = daysInMonth(date.year, date.month)
     let firstWeekDay: number = firstMonthDay(date.year, date.month)
@@ -41,7 +44,7 @@
         } while (arr.length < 42)
         return arr;
     }
-
+    // почему бы просто событием не выпускать
     function setActiveButton(i: number ,day: number) {
         if (i === actualButton) {
             getCheckedDate(null)
@@ -92,6 +95,17 @@
     })
 
 </script>
+<!--
+Баги
+- не помечается день в котором нельзя найти время
+- кружки можно через css transform друг на друга зафигачить и не парится с z-index, например тут
+- цвета получать через проперти набором + иметь дефолтный набор например тут посмотреть https://daisyui.com/components/stack
+например, https://daisyui.com/core/colors
+- кружки не кликабельные, только могут (не обязательно) реагировать на hover я это не опивывал
+в задаче так что не надо
+- пусть если больше 3 то накладываются и выглядят просто одинаково из набора цветов
+- нет норм выбора гола месяца но это я виноват, не написал об этом, потенциально сделаем
+-->
 <div class="container">
     <div class="font-bold mb-3 text-lg leading-6">{title}</div>
     <div class="flex justify-between">

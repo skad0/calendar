@@ -2,6 +2,7 @@
     export let getAppointmentDate: (date: Date) => Date[]
     export let appointmentsData: Date[] = []
 
+    // выглядит как тут не нужный, скорее как дополнительный property для calendar и компонента-композиции
     const months: string[] = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
 
     let actualDate: Date = null;
@@ -31,6 +32,7 @@
             {/each}
         </div>
         {#if !!actualDate}
+            <!-- это скорее стоит поднять наверх в компонент-композицию -->
             <div class="text-xs mt-2">Назначить встречу на {actualDate.getDate()} {months[actualDate.getMonth()]} {actualDate.getFullYear()} в
                 {actualDate.getHours()}:{actualDate.getMinutes() === 0 ? `00` : actualDate.getMinutes()}
             </div>
